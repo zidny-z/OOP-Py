@@ -1,3 +1,8 @@
+def login():
+    username = str(input('Username = '))
+    password = str(input('Password = '))
+        
+
 def menu():
     print('''################################################
 \t\tThe Geluds Game
@@ -19,5 +24,7 @@ def menu():
 ################################################''' )
     elif pilihan == 4:
         exit()
+
+        
 while True:
     menu()
