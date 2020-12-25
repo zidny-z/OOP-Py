@@ -1,7 +1,22 @@
-def login():
-    username = str(input('Username = '))
-    password = str(input('Password = '))
-        
+
+def mulai():
+
+    def login():
+        username = str(input('Username = '))
+        password = str(input('Password = '))
+    def daftar():
+        pass
+
+    print('''1. Login
+2. Daftar
+3. Menu''')
+    pilihan = int(input('pilihan = '))
+    if pilihan == 1:
+        login()
+    elif pilihan == 2:
+        daftar()
+    else:
+        print('Intruksi tidak dikenali')
 
 def menu():
     print('''################################################
