@@ -1,15 +1,16 @@
+import os
+clear = lambda: os.system('cls')
+pagar = str(48 * '#')
+
 
 def mulai():
-
     def login():
         username = str(input('Username = '))
-        password = str(input('Password = '))
+
     def daftar():
         pass
 
-    print('''1. Login
-2. Daftar
-3. Menu''')
+    print("")
     pilihan = int(input('pilihan = '))
     if pilihan == 1:
         login()
@@ -18,28 +19,24 @@ def mulai():
     else:
         print('Intruksi tidak dikenali')
 
+
 def menu():
-    print('''################################################
-\t\tThe Geluds Game
-################################################
-1. Mulai
-2. Cara Main
-3. Tentang Game
-4. Keluar''' )
+    print("\n" + pagar + "\n\t\tThe Geluds Game\n" + pagar +
+          "\n1. Mulai\n2. Cara Main\n3. Tentang Game\n4. Keluar")
     pilihan = int(input("Pilihan = "))
     if pilihan == 1:
-        pass
+        clear()
     elif pilihan == 2:
-        print('''################################################
-\t\tCara Main
-################################################''' )
+        clear()
+        print(pagar + "\n\t\tCara Main\n" + pagar)
     elif pilihan == 3:
-        print('''################################################
-\t\tThe Geluds Game
-################################################''' )
+        clear()
+        print(pagar + "\n\t\tThe Geluds Game\n" + pagar)
     elif pilihan == 4:
+        clear()
         exit()
 
-        
+
 while True:
+    clear()
     menu()
