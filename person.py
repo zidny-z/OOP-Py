@@ -1,5 +1,5 @@
 import sqlite3
-con = sqlite3.connect('database1.db')
+con = sqlite3.connect('db/database.sqlite')
 cursor = con.cursor()
 
 
@@ -28,10 +28,10 @@ class Enemy(Person):
 
 class Player(Person):
     def __init__(self,
-                 p_nama,
+                 p_nama=None,
                  p_level=1,
                  p_health=100,
-                 p_weapon,
+                 p_weapon=None,
                  p_score=0,
                  p_energy=0,
                  p_exp=0):
@@ -41,13 +41,14 @@ class Player(Person):
         self.exp = p_exp
 
     def masukdatabase(self):
-        q_playerdb = 'INSERT INTO ENEMY(EnemyName, EnemyLevel, EnemyHealth, EnemyWeapon) VALUES (\'%s\', \'%s\', \'%s\', \'%s\');'
-        q_playerdb = q_playerdb % (self.nama, self.level, self.health,
-                                   self.weapon)
-
+        q_playerdb = 'INSERT INTO Player(PlayerName,PlayerWeapon) VALUES (\'%s\', \'%s\');'
+        q_playerdb = q_playerdb % (self.nama, self.weapon)
         cursor.execute(q_playerdb)
         con.commit()
 
 
-kucingutan = Enemy('kucingutan', 1, 100, 2)
-kucingutan.masukdatabase()
+# kucingutan = Enemy('kucingutan', 1, 100, 2)
+# kucingutan.masukdatabase()
+
+admin3 = Player(p_nama='admin3', p_weapon=1)
+admin3.masukdatabase()
