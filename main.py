@@ -1,14 +1,17 @@
 import os
 clear = lambda: os.system('cls')
 pagar = str(48 * '#')
+import tesdb
+print(tesdb.a)
+print(tesdb.nama)
 
 
 def mulai():
     def login():
-        username = str(input('Username = '))
+        print("1. admin\n2. adminlagi")
 
     def daftar():
-        pass
+        nama = str(input('Nama = '))
 
     print("")
     pilihan = int(input('pilihan = '))
@@ -26,6 +29,7 @@ def menu():
     pilihan = int(input("Pilihan = "))
     if pilihan == 1:
         clear()
+        mulai()
     elif pilihan == 2:
         clear()
         print(pagar + "\n\t\tCara Main\n" + pagar)

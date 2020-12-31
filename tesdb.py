@@ -12,4 +12,6 @@ nama = 'select PlayerName from player WHERE PlayerID=1'
 cursor.execute(nama)
 hasilnama = cursor.fetchone()
 con.commit()
-print(hasilnama[0])
+print(hasilnama)
+
+a = 'aku'

@@ -47,8 +47,8 @@ class Player(Person):
         con.commit()
 
 
-# kucingutan = Enemy('kucingutan', 1, 100, 2)
-# kucingutan.masukdatabase()
+kucingutan = Enemy('kucingutan', 1, 100, 2)
+kucingutan.masukdatabase()
 
-admin3 = Player(p_nama='admin3', p_weapon=1)
-admin3.masukdatabase()
+# admin3 = Player(p_nama='admiazAaaan3', p_weapon=1)
+# admin3.masukdatabase()
