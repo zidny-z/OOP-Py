@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2020 at 07:35 AM
+-- Generation Time: Dec 31, 2020 at 07:43 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -33,19 +33,24 @@ CREATE TABLE `enemy` (
   `EnemyHealth` int(11) NOT NULL,
   `EnemyLevel` int(11) NOT NULL,
   `EnemyPower` int(11) NOT NULL,
-  `EnemyArmor` int(11) NOT NULL,
-  `EnemyWeapon` int(11) NOT NULL
+  `EnemyArmor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `enemy`
 --
 
-INSERT INTO `enemy` (`EnemyID`, `EnemyName`, `EnemyHealth`, `EnemyLevel`, `EnemyPower`, `EnemyArmor`, `EnemyWeapon`) VALUES
-(1, 'Munos', 150, 1, 6, 8, 4),
-(2, 'Zedos', 200, 2, 8, 7, 6),
-(3, 'Dosan', 250, 3, 10, 8, 7),
-(4, 'Zaoshi', 300, 4, 12, 11, 2);
+INSERT INTO `enemy` (`EnemyID`, `EnemyName`, `EnemyHealth`, `EnemyLevel`, `EnemyPower`, `EnemyArmor`) VALUES
+(1, 'Munos', 150, 1, 6, 8),
+(2, 'Zedos', 200, 2, 8, 7),
+(3, 'Dosan', 250, 3, 10, 8),
+(4, 'Zaoshi', 300, 4, 12, 11),
+(5, 'Zugo', 400, 5, 15, 12),
+(6, 'Euriale', 450, 6, 18, 20),
+(7, 'Ofiotaur', 500, 7, 21, 19),
+(8, 'Talos', 650, 8, 23, 25),
+(9, 'Stheno', 800, 9, 28, 31),
+(10, 'Gerion', 1000, 10, 30, 32);
 
 -- --------------------------------------------------------
 
@@ -60,6 +65,17 @@ CREATE TABLE `hero` (
   `HeroPower` int(11) NOT NULL,
   `HeroArmor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hero`
+--
+
+INSERT INTO `hero` (`HeroID`, `HeroName`, `HeroHealth`, `HeroPower`, `HeroArmor`) VALUES
+(1, 'Kalibur', 175, 20, 18),
+(2, 'Shin', 175, 19, 21),
+(3, 'Dranton', 175, 18, 22),
+(4, 'Darius', 175, 23, 19),
+(5, 'Earl', 175, 21, 24);
 
 -- --------------------------------------------------------
 
@@ -97,13 +113,15 @@ CREATE TABLE `weapon` (
 
 INSERT INTO `weapon` (`WeaponID`, `WeaponName`, `WeaponPower`, `CritRate`, `CritDamage`) VALUES
 (1, 'Sword', 22, 19, 14),
-(2, 'Bow', 21, 16, 13),
+(2, 'Bow', 19, 16, 13),
 (3, 'Hammer', 23, 18, 21),
 (4, 'Knuckle', 16, 11, 13),
-(5, 'Axe', 20, 19, 20),
+(5, 'Axe', 20, 18, 15),
 (6, 'Nunchaku', 17, 12, 15),
 (7, 'Toya', 18, 15, 16),
-(8, 'Katar', 19, 17, 16);
+(8, 'Katar', 21, 17, 16),
+(9, 'Spear', 15, 20, 18),
+(10, 'Halberd', 20, 15, 17);
 
 --
 -- Indexes for dumped tables
@@ -113,8 +131,7 @@ INSERT INTO `weapon` (`WeaponID`, `WeaponName`, `WeaponPower`, `CritRate`, `Crit
 -- Indexes for table `enemy`
 --
 ALTER TABLE `enemy`
-  ADD PRIMARY KEY (`EnemyID`),
-  ADD KEY `EnemyWeapon` (`EnemyWeapon`);
+  ADD PRIMARY KEY (`EnemyID`);
 
 --
 -- Indexes for table `hero`
@@ -141,16 +158,10 @@ ALTER TABLE `weapon`
 --
 
 --
--- AUTO_INCREMENT for table `enemy`
---
-ALTER TABLE `enemy`
-  MODIFY `EnemyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `hero`
 --
 ALTER TABLE `hero`
-  MODIFY `HeroID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `HeroID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `player`
@@ -162,17 +173,11 @@ ALTER TABLE `player`
 -- AUTO_INCREMENT for table `weapon`
 --
 ALTER TABLE `weapon`
-  MODIFY `WeaponID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `WeaponID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `enemy`
---
-ALTER TABLE `enemy`
-  ADD CONSTRAINT `enemy_ibfk_1` FOREIGN KEY (`EnemyWeapon`) REFERENCES `weapon` (`WeaponID`);
 
 --
 -- Constraints for table `player`
