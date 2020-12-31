@@ -14,6 +14,3 @@ class weapon:
         cursor.execute(q_weapondb)
         con.commit()
 
-
-keris = weapon('catutkuku', 1)
-keris.masukdatabase()
