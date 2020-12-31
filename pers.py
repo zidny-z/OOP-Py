@@ -12,7 +12,7 @@ mydb = mysql.connector.connect(
 
 class Enemy:
     mycursor = mydb.cursor()
-    mycursor.execute("SELECT * FROM enemy WHERE EnemyID=1")
+    mycursor.execute("SELECT * FROM enemy WHERE EnemyID="+id)
     hasil = mycursor.fetchall()
 
     def __init__(self, id):

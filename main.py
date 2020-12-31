@@ -11,6 +11,9 @@ mydb = mysql.connector.connect(
   database="test"
 )
 
+def dashboard():
+    pass
+
 def mulai():
     print('1. Login\n2. Daftar')
     pilihan= int(input('pilihan = '))
@@ -52,8 +55,22 @@ def daftar():
     header = ['ID',"Nama","Power","CritRate", "CritDamage"]
     print(tabulate(hasil, headers=header))
     pilihSenjata = int(input('\nPilih Senjata = '))
+    if pilihSenjata not in range(len(hasil)):
+        print('salah input')
+        menu()   
 
+    try:
+        sql= "INSERT INTO player ('PlayerName', 'PlayerHealth', 'PlayerEXP', 'PlayerLevel', 'PlayerHero', 'PlayerWeapon') VALUES (%s, 100, 0, 1, %s, %s)"
+        val = (nama, pilihHero, pilihSenjata)
+        mycursor.execute(sql, val)
+        print("Pendaftaran Berhasil")
+        con.commit()
+        dashboard()
 
+    except mysql.connector.Error as e:
+        # print("c")
+        # print(format(e))
+        print(e)
 
 def menu():
     print("\n" + pagar + "\n\t\tThe Geluds Game\n" + pagar +
