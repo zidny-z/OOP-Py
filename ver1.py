@@ -9,7 +9,7 @@ pagar = str(48 * '#')
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
-  database="test"
+  database="the geluds game"
 )
 
 class Hero:
@@ -29,11 +29,10 @@ class Weapon:
           self.critDamage = critDamage
 
 class Player:
-     def __init__(self, idnya, nama, health, exp, level, hero, weapon):
+     def __init__(self, idnya, nama, health, level, hero, weapon):
           self.id = idnya
           self.nama = nama
           self.health = health
-          self.exp = exp
           self.level = level
           self.hero = hero
           self.weapon = weapon
@@ -96,7 +95,7 @@ for i in range(len(hasil)):
 mycursor = mydb.cursor()
 mycursor.execute("SELECT * FROM player")
 hasil = mycursor.fetchall()
-myplayer = Player(hasil[0][0],hasil[0][1],hasil[0][2],hasil[0][3],hasil[0][4],hasil[0][5],hasil[0][6])
+myplayer = Player(hasil[0][0],hasil[0][1],hasil[0][2],hasil[0][3],hasil[0][4],hasil[0][5])
 
 #--- Declare Enemy ---#
 mycursor = mydb.cursor()
@@ -147,7 +146,7 @@ def displayProfil():
      mycursor = mydb.cursor()
      mycursor.execute("SELECT * FROM player")
      hasil = mycursor.fetchall()
-     header = ['ID', 'Nama Anda', 'Health', 'EXP', 'Level','HeroID', 'WeaponID']
+     header = ['ID', 'Nama Anda', 'Health', 'Level','HeroID', 'WeaponID']
      print()
      print(tabulate(hasil, headers=header))
 
@@ -205,7 +204,7 @@ def reset():
           menu()   
 
      try:
-          sql= "UPDATE `player` SET `PlayerName`= %s,`PlayerHealth`= 100,`PlayerEXP`= 0,`PlayerLevel`= 1,`PlayerHero`=%s,`PlayerWeapon`=%s"
+          sql= "UPDATE `player` SET `PlayerName`= %s,`PlayerHealth`= 100,`PlayerLevel`= 1,`PlayerHero`=%s,`PlayerWeapon`=%s"
           val = (nama, pilihHero, pilihSenjata)
           mycursor.execute(sql, val)
           mydb.commit()
