@@ -36,6 +36,7 @@ class Player:
           self.level = level
           self.hero = hero
           self.weapon = weapon
+     
           
 
 class Enemy:
