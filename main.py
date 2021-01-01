@@ -12,7 +12,7 @@ mydb = mysql.connector.connect(
 )
 
 def dashboard():
-    pass
+         pass
 
 def mulai():
     print('1. Login\n2. Daftar')
@@ -22,8 +22,12 @@ def mulai():
             login()
         elif pilihan==2:
             daftar()
-    except:
-        pass
+        else:
+            print("salah input")
+            menu()
+    except KeyboardInterrupt:
+        print("salah input")
+        menu()
 
 def login():
     mycursor = mydb.cursor()
@@ -32,10 +36,15 @@ def login():
     header = ['ID', 'Nama', 'Health', 'EXP', 'Level', 'Level','HeroID', 'WeaponID']
     print()
     print(tabulate(hasil, headers=header))
-    pilihan =  int(input('\nPilihan = '))
+    tempId = []
+    for i in range(len(hasil)):
+        tempId.append(hasil[i][0])
+    print(tempId)
+    pilihan =  int(input('\nPilih ID = '))
 
 def daftar():
     nama = str(input('\nNama = '))
+    nama = nama.lower()
     print()
 
     mycursor = mydb.cursor()
@@ -44,7 +53,7 @@ def daftar():
     header = ['ID','Nama','Health','Power','Armor']
     print(tabulate(hasil, headers=header))
     pilihHero = int(input('\nPilih Hero = '))
-    if pilihHero not in range(len(hasil)):
+    if pilihHero not in range(1,len(hasil)+1):
         print('salah input')
         menu()
 
@@ -55,16 +64,16 @@ def daftar():
     header = ['ID',"Nama","Power","CritRate", "CritDamage"]
     print(tabulate(hasil, headers=header))
     pilihSenjata = int(input('\nPilih Senjata = '))
-    if pilihSenjata not in range(len(hasil)):
+    if pilihSenjata not in range(1,len(hasil)+1):
         print('salah input')
         menu()   
 
     try:
-        sql= "INSERT INTO player ('PlayerName', 'PlayerHealth', 'PlayerEXP', 'PlayerLevel', 'PlayerHero', 'PlayerWeapon') VALUES (%s, 100, 0, 1, %s, %s)"
+        sql= "INSERT INTO `player`(`PlayerName`, `PlayerHealth`, `PlayerEXP`, `PlayerLevel`, `PlayerHero`, `PlayerWeapon`) VALUES (%s, 100, 0, 1, %s, %s)"
         val = (nama, pilihHero, pilihSenjata)
         mycursor.execute(sql, val)
+        mydb.commit()
         print("Pendaftaran Berhasil")
-        con.commit()
         dashboard()
 
     except mysql.connector.Error as e:
