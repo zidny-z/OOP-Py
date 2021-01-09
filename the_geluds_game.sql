@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2021 at 03:44 PM
+-- Generation Time: Jan 09, 2021 at 08:47 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -33,24 +33,25 @@ CREATE TABLE `enemy` (
   `EnemyHealth` int(11) NOT NULL,
   `EnemyLevel` int(11) NOT NULL,
   `EnemyPower` int(11) NOT NULL,
-  `EnemyArmor` int(11) NOT NULL
+  `EnemyArmor` int(11) NOT NULL,
+  `EnemyWeapon` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `enemy`
 --
 
-INSERT INTO `enemy` (`EnemyID`, `EnemyName`, `EnemyHealth`, `EnemyLevel`, `EnemyPower`, `EnemyArmor`) VALUES
-(1, 'Munos', 150, 1, 8, 11),
-(2, 'Zedos', 200, 2, 9, 10),
-(3, 'Dosan', 250, 3, 10, 8),
-(4, 'Zaoshi', 300, 4, 12, 11),
-(5, 'Zugo', 400, 5, 15, 12),
-(6, 'Euriale', 450, 6, 18, 20),
-(7, 'Ofiotaur', 500, 7, 21, 19),
-(8, 'Talos', 650, 8, 23, 25),
-(9, 'Stheno', 800, 9, 28, 31),
-(10, 'Gerion', 1000, 10, 30, 32);
+INSERT INTO `enemy` (`EnemyID`, `EnemyName`, `EnemyHealth`, `EnemyLevel`, `EnemyPower`, `EnemyArmor`, `EnemyWeapon`) VALUES
+(1, 'Munos', 150, 1, 8, 11, 9),
+(2, 'Zedos', 200, 2, 9, 10, 4),
+(3, 'Dosan', 250, 3, 10, 8, 6),
+(4, 'Zaoshi', 300, 4, 12, 11, 7),
+(5, 'Zugo', 400, 5, 15, 12, 2),
+(6, 'Euriale', 450, 6, 18, 20, 5),
+(7, 'Ofiotaur', 500, 7, 21, 19, 10),
+(8, 'Talos', 650, 8, 23, 25, 8),
+(9, 'Stheno', 800, 9, 28, 31, 1),
+(10, 'Gerion', 1000, 10, 30, 32, 3);
 
 -- --------------------------------------------------------
 
@@ -71,11 +72,11 @@ CREATE TABLE `hero` (
 --
 
 INSERT INTO `hero` (`HeroID`, `HeroName`, `HeroHealth`, `HeroPower`, `HeroArmor`) VALUES
-(1, 'Kalibur', 100, 20, 18),
-(2, 'Shin', 100, 19, 21),
-(3, 'Dranton', 100, 18, 22),
-(4, 'Darius', 100, 23, 19),
-(5, 'Earl', 100, 21, 24);
+(1, 'Kalibur', 100, 22, 19),
+(2, 'Shin', 100, 18, 21),
+(3, 'Dranton', 100, 17, 22),
+(4, 'Darius', 100, 21, 16),
+(5, 'Earl', 100, 20, 23);
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,8 @@ INSERT INTO `weapon` (`WeaponID`, `WeaponName`, `WeaponPower`) VALUES
 -- Indexes for table `enemy`
 --
 ALTER TABLE `enemy`
-  ADD PRIMARY KEY (`EnemyID`);
+  ADD PRIMARY KEY (`EnemyID`),
+  ADD KEY `EnemyWeapon` (`EnemyWeapon`);
 
 --
 -- Indexes for table `hero`
@@ -175,6 +177,12 @@ ALTER TABLE `weapon`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `enemy`
+--
+ALTER TABLE `enemy`
+  ADD CONSTRAINT `enemy_ibfk_1` FOREIGN KEY (`EnemyWeapon`) REFERENCES `weapon` (`WeaponID`);
 
 --
 -- Constraints for table `player`
