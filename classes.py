@@ -1,3 +1,10 @@
+from tabulate import tabulate
+import mysql.connector
+import os
+
+clear = lambda: os.system('cls')
+pagar = str(48 * '#')
+
 class Pemain:
      def __init__(self,idnya,nama,health,level,weapon):
           self.__id = idnya
@@ -52,6 +59,27 @@ class Weapon:
      def getId(self):
           return self.__id
 
+class Hero:
+     def __init__(self, idnya, nama, health, power, armor):
+          self.id = idnya
+          self.nama = nama
+          self.health = health
+          self.power = power
+          self.armor = armor
+     
+     def getNama(self):
+          return self.nama
+     
+     def getHealth(self):
+          return self.health
+          
+     def getPower(self):
+          return self.power
+     
+     def getArmor(self):
+          return self.armor
+
 
 a = Player(1,'aku',100,1,1,1)
 print(a.getId())
+

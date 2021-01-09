@@ -1,5 +1,4 @@
 from tabulate import tabulate
-from getpass import getpass
 import mysql.connector
 import random
 import os
