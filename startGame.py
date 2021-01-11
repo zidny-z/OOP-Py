@@ -23,7 +23,7 @@ class start:
 
      def displayProfil(self):
           #pront profil sendiri
-          print("\n" + pagar + "\n\t\tSelamat Datang!\n" + pagar+"\n\nProfil Anda")
+          print("\nProfil Anda")
           self.cursor.execute("SELECT * FROM player")
           hasil = self.cursor.fetchall()
           header = ['ID', 'Nama Anda', 'Health', 'Level','HeroID', 'WeaponID']
@@ -87,14 +87,14 @@ class start:
                     myMainHealth = 0
                elif eMainHealth <= 0:
                     eMainHealth = 0
-               print("Anda Menyerang\nHP Musuh :",eMainHealth)
+               print("\nAnda Menyerang\nHP Musuh :",eMainHealth)
 
                myMainHealth = myMainHealth - (eMainDamage - myMainArmor)
                if myMainHealth <= 0:
                     myMainHealth = 0
                elif eMainHealth <= 0:
                     eMainHealth = 0
-               print("Musuh Menyerang\nHP Anda :",myMainHealth)
+               print("\nMusuh Menyerang\nHP Anda :",myMainHealth)
 
                if myMainHealth <= 0:
                     myMainHealth = 0
@@ -112,15 +112,18 @@ class start:
           self.myplayer.level += 1
           if self.myplayer.level>=10 :
                self.myplayer.level = 1
-               print(pagar+"\nSelamat Anda telah Menyelesaikan Game ini\n"+pagar)
-          self.cursor.execute("UPDATE `player` SET `PlayerLevel`={} WHERE PlayerID=1".format(self.myplayer.level))
-          self.mydb.commit()
+               print(pagar+"\nSelamat Anda telah Menyelesaikan Game ini\n"+pagar+"\n\n Akun direset otomatis...")
+               self.cursor.execute("UPDATE `player` SET `PlayerID`=1,`PlayerHealth`=100,`PlayerLevel`=1 WHERE PlayerID=1")
+               self.mydb.commit()
+               exit()
+          else:
+               self.cursor.execute("UPDATE `player` SET `PlayerLevel`={} WHERE PlayerID=1".format(self.myplayer.level))
+               self.mydb.commit()
 
      def nambahHP(self):
-          self.myplayer.health += 20
+          self.myplayer.health += 90
           if self.myplayer.level>=10 :
                self.myplayer.health = 100
-          print('nambah')
           self.cursor.execute("UPDATE `player` SET `PlayerHealth`= {} WHERE playerID=1".format(self.myplayer.health))
           self.mydb.commit()
 
@@ -180,8 +183,8 @@ class start:
                val = (nama, pilihHero, pilihSenjata)
                self.cursor.execute(sql, val)
                self.mydb.commit()
-               print("Main Ulang Berhasil\nSilahkan login kembali")         
-               clear() 
+               # print("Main Ulang Berhasil\nSilahkan login kembali")         
+               self.menu() 
 
           except mysql.connector.Error:
                print("Salah Input")
